@@ -11,14 +11,28 @@ using System.Windows.Shapes;
 
 namespace MyWpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        AuthLogic authLogic = new AuthLogic();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string login = txtLogin.Text;
+            string pass = txtPass.Password;
+
+            if (authLogic.AuthService(login, pass))
+            {
+                MessageBox.Show("Успешная авторизация!");
+            }
+            else
+            {
+                MessageBox.Show("Неверные данные!");
+            }
         }
     }
 }
